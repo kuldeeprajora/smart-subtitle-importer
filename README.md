@@ -2,6 +2,8 @@
 
 Smart Subtitle Importer is an Adobe After Effects ScriptUI panel that converts an SRT subtitle file into timed text layers inside a single subtitle precomposition.
 
+**Project status: Final Draft**
+
 ## Features
 
 - Parse standard SRT subtitle blocks and timing information
@@ -53,4 +55,4 @@ Second subtitle line
 
 ## Status
 
-The importer is functional in current testing. This repository remains private while cross-platform validation, error handling, and release documentation are finalized.
+**Final Draft.** The current functionality is accepted and no further feature changes are planned before release. The repository remains private until the decision is made to publish it.
