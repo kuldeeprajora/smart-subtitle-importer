@@ -1,44 +1,56 @@
+# Smart Subtitle Importer
 
-# Smart Subtitle Importer 
-
-A script for Adobe After Effects that intelligently imports .srt subtitle files and generates animated text layers.
+Smart Subtitle Importer is an Adobe After Effects ScriptUI panel that converts an SRT subtitle file into timed text layers inside a single subtitle precomposition.
 
 ## Features
 
-- Imports .srt subtitle file and parses into individual text layers
-- Automatically sets in/out points for each subtitle layer based on .srt timecodes
-- Allows applying animation presets to subtitles for IN and OUT animations
-- Imports all subtitles into a single clean precomp for easy management
-- Built-in SRT parser handles common .srt formats
-
-## How to Use
-
-1. In After Effects, run the `smartSubtitleImporter.jsx` script 
-2. Browse and select your .srt subtitle file
-3. (Optional) Select animation presets (.ffx) for the subtitle IN and OUT animations
-4. Click "Generate Subtitles"
-5. All subtitles will be imported into a new precomp named "SUBTITLES_PRECOMP"
-6. The precomp is automatically added to your currently active composition
-
-## Tips
-
-- Make sure your active composition is selected before running the script
-- IN/OUT animation presets are optional - leave blank for no animation
-- Subtitles are centered and positioned near the bottom of the comp by default
-- Adjust the default subtitle text style by modifying the script code
-
-## Requirements
-
-- Adobe After Effects CS6 or later
-- Tested on Windows, should also work on Mac
+- Parse standard SRT subtitle blocks and timing information
+- Create one text layer per subtitle entry
+- Set every subtitle layer's in and out points from the SRT timecodes
+- Place all generated subtitle layers in a clean `SUBTITLES_PRECOMP`
+- Match the subtitle precomp's size, duration, pixel aspect, and frame rate to the active composition
+- Add the generated subtitle precomp to the active composition automatically
+- Configure font name, font size, scale, and six-digit hex text color
+- Center-align subtitles near the bottom of the frame
+- Optionally apply After Effects `.ffx` presets for IN and OUT animation
+- Generate the complete subtitle setup inside one After Effects undo group
 
 ## Installation
 
-1. Place `smartSubtitleImporter.jsx` in your After Effects scripts folder:
-    - Windows: `Program Files\Adobe\Adobe After Effects <version>\Support Files\Scripts\`
-    - Mac: `/Applications/Adobe After Effects <version>/Scripts/`
-2. Restart After Effects if it was open
+Copy `smartSubtitleImporter.jsx` into the After Effects `Scripts/ScriptUI Panels` directory.
 
-## License
+- Windows: `C:\Program Files\Adobe\Adobe After Effects <version>\Support Files\Scripts\ScriptUI Panels\`
+- macOS: `/Applications/Adobe After Effects <version>/Scripts/ScriptUI Panels/`
 
-This script is provided "as is" without any warranty. Feel free to use and modify for personal and commercial projects. Credit is appreciated but not required. 
+Restart After Effects, then open **Window > Smart Subtitle Importer**.
+
+## Usage
+
+1. Open the composition that should receive the subtitles.
+2. Open **Smart Subtitle Importer** from the Window menu.
+3. Enter an optional After Effects font name, plus the font size, scale, and hex color.
+4. Click **Browse SRT** and select a standard `.srt` file.
+5. Optionally choose `.ffx` files using **IN Animation** and **OUT Animation**.
+6. Click **Generate Subtitles**.
+
+The tool creates `SUBTITLES_PRECOMP`, adds all timed subtitle layers to it, and inserts that precomp into the active composition.
+
+## SRT Expectations
+
+Each subtitle block should contain an index, a timing line in the form `HH:MM:SS,mmm --> HH:MM:SS,mmm`, and one or more text lines. Blocks should be separated by a blank line.
+
+Example:
+
+```srt
+1
+00:00:01,000 --> 00:00:03,500
+First subtitle line
+
+2
+00:00:04,000 --> 00:00:06,000
+Second subtitle line
+```
+
+## Status
+
+The importer is functional in current testing. This repository remains private while cross-platform validation, error handling, and release documentation are finalized.
